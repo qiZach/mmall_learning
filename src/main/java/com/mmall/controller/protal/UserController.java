@@ -29,10 +29,10 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param username
-     * @param password
-     * @param session
-     * @return
+     * @param username 用户名
+     * @param password 密码
+     * @param session  会话
+     * @return 返回登录用户
      */
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
