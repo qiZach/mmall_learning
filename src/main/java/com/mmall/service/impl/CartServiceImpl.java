@@ -119,8 +119,8 @@ public class CartServiceImpl implements ICartService {
         CartVo cartVo = new CartVo();
         // 查找用户购物车中内所有的商品
         List<Cart> cartList = cartMapper.selectCartByUserId(userId);
-        List<CartProductVo> cartProductVoList = Lists.newArrayList();
 
+        List<CartProductVo> cartProductVoList = Lists.newArrayList();
         // 定义购物车总金额为 0
         BigDecimal cartTotalPrice = new BigDecimal("0");
 
