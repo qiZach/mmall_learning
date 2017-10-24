@@ -145,17 +145,17 @@ public class CartServiceImpl implements ICartService {
                     // 购买数量
                     int buyLimitCount = 0;
                     if (product.getStock() >= cart.getQuantity()) {
-                        // 库存大于购买量
+                        // 库存 >= 购买量
                         buyLimitCount = cart.getQuantity();
                         cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_SUCCESS);
                     } else {
-                        // 库存小与购买量 设为最大库存
+                        // 库存 < 购买量 设为最大库存
                         buyLimitCount = product.getStock();
                         cartProductVo.setLimitQuantity(Const.Cart.LIMIT_NUM_FAIL);
                         // 购物车中更新有效库存
                         Cart cartForQuantity = new Cart();
                         cartForQuantity.setId(cart.getId());
-                        cartForQuantity.setQuantity(cart.getQuantity());
+                        cartForQuantity.setQuantity(product.getStock());
                         cartMapper.updateByPrimaryKeySelective(cartForQuantity);
                     }
                     cartProductVo.setQuantity(buyLimitCount);
