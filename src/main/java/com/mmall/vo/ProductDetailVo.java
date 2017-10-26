@@ -2,6 +2,11 @@ package com.mmall.vo;
 
 import java.math.BigDecimal;
 
+/**
+ * 产品列表VO
+ *
+ * @author zhangsiqi
+ */
 public class ProductDetailVo {
 
     private Integer id;

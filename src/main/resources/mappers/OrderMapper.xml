@@ -222,5 +222,10 @@
         WHERE user_id = #{userId}
         order by create_time desc
     </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mmall_learning.mmall_order
+    </select>
 
 </mapper>

@@ -55,7 +55,7 @@ public class CartServiceImpl implements ICartService {
             cart.setQuantity(count);
             cartMapper.updateByPrimaryKeySelective(cart);
         }
-        // 从上面添加或更新商品后对用户的购物车进行一次遍历, 得到用户购物车的ListVo
+        // 从上面添加或更新商品后对用户的购物车进行一次遍历, 得到用户购物车的CartVo
         return this.list(userId);
     }
 
@@ -119,7 +119,7 @@ public class CartServiceImpl implements ICartService {
         CartVo cartVo = new CartVo();
         // 查找用户购物车中内所有的商品
         List<Cart> cartList = cartMapper.selectCartByUserId(userId);
-
+        // 购物车产品VO
         List<CartProductVo> cartProductVoList = Lists.newArrayList();
         // 定义购物车总金额为 0
         BigDecimal cartTotalPrice = new BigDecimal("0");
@@ -128,6 +128,7 @@ public class CartServiceImpl implements ICartService {
             // 用户的购物车不为空
             for (Cart cart : cartList) {
                 CartProductVo cartProductVo = new CartProductVo();
+                // 购物车Id
                 cartProductVo.setId(cart.getId());
                 cartProductVo.setUserId(userId);
                 cartProductVo.setProductId(cart.getProductId());
@@ -172,6 +173,7 @@ public class CartServiceImpl implements ICartService {
         }
         cartVo.setCartTotalPrice(cartTotalPrice);
         cartVo.setCartProductVoList(cartProductVoList);
+        // 获取购物车是不是全选
         cartVo.setAllChecked(getAllCheckedStatus(userId));
         cartVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix"));
         return cartVo;
@@ -181,6 +183,7 @@ public class CartServiceImpl implements ICartService {
         if (userId == null) {
             return false;
         }
+        // 统计未选的购物车数量,如果有未选, 最后的count > 0  return false;
         return cartMapper.selectCartProductCheckedStatusByUserId(userId) == 0;
     }
 }

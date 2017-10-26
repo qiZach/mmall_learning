@@ -2,6 +2,11 @@ package com.mmall.vo;
 
 import java.math.BigDecimal;
 
+/**
+ * 购物车商品Vo
+ *
+ * @author zhangsiqi
+ */
 public class CartProductVo {
 
     /**

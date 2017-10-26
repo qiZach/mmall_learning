@@ -1,11 +1,13 @@
 package com.mmall.vo;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * 订单总VO
+ * @author zhangsiqi
+ */
 public class OrderVo {
-
 
     private Long orderNo;
 

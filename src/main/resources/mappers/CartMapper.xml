@@ -77,7 +77,7 @@
             <if test="createTime != null">
                 now(),
             </if>
-            <if test="updateTime != null">
+            <if test="updateTime == null">
                 now(),
             </if>
         </trim>

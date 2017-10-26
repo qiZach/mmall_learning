@@ -1,5 +1,10 @@
 package com.mmall.vo;
 
+/**
+ * 收货地址Vo
+ *
+ * @author zhangsiqi
+ */
 public class ShippingVo {
     private String receiverName;
 

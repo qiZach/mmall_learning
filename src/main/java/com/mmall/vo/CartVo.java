@@ -3,6 +3,10 @@ package com.mmall.vo;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * 购物车Vo
+ * @author zhangsiqi
+ */
 public class CartVo {
 
     List<CartProductVo> cartProductVoList;
