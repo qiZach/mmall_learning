@@ -50,15 +50,15 @@ public class FileServiceImpl implements IFileService {
 
         try {
             // 此方法来转存文件到目标文件
-            multiFile.transferTo(targetFile);
+            //multiFile.transferTo(targetFile);
             // 到此文件已经上传成功, 文件上传到upload文件夹下
 
-            FTPUtil.uploadFile(Lists.newArrayList(targetFile));
+            //FTPUtil.uploadFile(Lists.newArrayList(targetFile));
             // 已经将targetFile上传到我们得FTP服务器上
 
             // 上传完后, 删除upload下面的文件
-            targetFile.delete();
-        } catch (IOException e) {
+            //targetFile.delete();
+        } catch (Exception e) {
             logger.error("上传文件异常", e);
             return null;
         }
