@@ -7,7 +7,8 @@ public class Md5test {
 
     @Test
     public  void md5SaltTest(){
-        System.out.println(MD5Util.MD5EncodeUtf8("admin"));
+        System.out.println(MD5Util.MD5EncodeUtf8("161592564220180424"));
+        System.out.println(MD5Util.MD5EncodeUtf8("161592564220180424"));
     }
 
 }
