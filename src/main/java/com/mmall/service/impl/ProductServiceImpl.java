@@ -117,7 +117,7 @@ public class ProductServiceImpl implements IProductService {
         // parentCategoryId
         Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
         if (category == null) {
-            productDetailVO.setParentCategoryId(0); // 默认根节点
+            productDetailVO.setParentCategoryId(0);
         } else {
             productDetailVO.setParentCategoryId(category.getId());
         }

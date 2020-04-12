@@ -31,6 +31,7 @@ public class Const {
     }
 
     public enum ProductStatusEnum {
+        // 在售
         ON_SALE(1, "在售");
         private String value;
         private int code;
@@ -51,6 +52,7 @@ public class Const {
 
     public enum OrderStatusEnum {
 
+        //取消
         CANCELED(0, "已取消"),
         NO_PAY(10, "未支付"),
         PAID(20, "已付款"),
@@ -101,6 +103,7 @@ public class Const {
     }
 
     public enum PayPlatFormEnum {
+        //支付宝
         ALIPAY(1, "支付宝");
 
         private String value;
@@ -130,6 +133,7 @@ public class Const {
 
 
     public enum PaymentTypeEnum {
+        // 在线支付
         ONLINE_PAY(1, "在线支付");
 
         private String value;
