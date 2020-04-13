@@ -20,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class CookieUtil {
 
-    private final static String COOKIE_DOMAIN = ".mall.com";
+    /**
+     * tomcat 8.5顶级域名不支持.开头。 mall.com为顶级域名
+     */
+    private final static String COOKIE_DOMAIN = "mall.com";
     private final static String COOKIE_NAME = "mmall_login_token";
 
     public static String readLoginToken(HttpServletRequest request) {
