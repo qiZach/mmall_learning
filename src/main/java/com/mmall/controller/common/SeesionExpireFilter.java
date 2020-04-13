@@ -32,7 +32,8 @@ public class SeesionExpireFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        if (StringUtils.isEmpty(loginToken)) {
+        // 登录用户不为空，即已登陆了用户
+        if (StringUtils.isNotEmpty(loginToken)) {
             String usreJsonStr = RedisPoolUtil.get(loginToken);
             User user = JsonUtil.String2Obj(usreJsonStr, User.class);
             // 如果user不为空则重置session的时间，即调用expire命令

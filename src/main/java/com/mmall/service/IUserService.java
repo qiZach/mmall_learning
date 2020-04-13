@@ -94,4 +94,5 @@ public interface IUserService {
      * @return 管理员.success  客户.error
      */
     ServerResponse checkAdminRole(User user);
+
 }
