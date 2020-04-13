@@ -8,7 +8,8 @@
 
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -23,13 +24,28 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- 二期新增充值session时间的filter -->
+    <filter>
+        <filter-name>sessionExpireFilter</filter-name>
+        <filter-class>
+            com.mmall.controller.common.SeesionExpireFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionExpireFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
 
     <listener>
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
     </listener>
 
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener
+        </listener-class>
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -40,7 +56,8 @@
 
     <servlet>
         <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
