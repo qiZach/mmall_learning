@@ -25,17 +25,27 @@
     </filter-mapping>
 
     <!-- 二期新增重置session时间的filter -->
+    <!--<filter>-->
+        <!--<filter-name>sessionExpireFilter</filter-name>-->
+        <!--<filter-class>-->
+            <!--com.mmall.controller.common.SeesionExpireFilter-->
+        <!--</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>sessionExpireFilter</filter-name>-->
+        <!--<url-pattern>*.do</url-pattern>-->
+    <!--</filter-mapping>-->
+
     <filter>
-        <filter-name>sessionExpireFilter</filter-name>
+        <filter-name>springSessionRepositoryFilter</filter-name>
         <filter-class>
-            com.mmall.controller.common.SeesionExpireFilter
+            org.springframework.web.filter.DelegatingFilterProxy
         </filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>sessionExpireFilter</filter-name>
+        <filter-name>springSessionRepositoryFilter</filter-name>
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
-
 
     <listener>
         <listener-class>
