@@ -32,7 +32,4 @@ public interface CartMapper {
 
     List<Cart> selectCheckedCartByUserId(@Param("userId")Integer userId);
 
-
-
-
 }
