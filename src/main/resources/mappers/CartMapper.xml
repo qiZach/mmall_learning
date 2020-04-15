@@ -18,15 +18,15 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from mmall_cart
+        from mmall_learning.mmall_cart
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM mmall_cart
+        DELETE FROM mmall_learning.mmall_cart
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.Cart">
-        INSERT INTO mmall_cart (id, user_id, product_id,
+        INSERT INTO mmall_learning.mmall_cart (id, user_id, product_id,
                                 quantity, checked, create_time,
                                 update_time)
         VALUES (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
@@ -34,7 +34,7 @@
                 now())
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.Cart">
-        insert into mmall_cart
+        insert into mmall_learning.mmall_cart
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -83,7 +83,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Cart">
-        update mmall_cart
+        update mmall_learning.mmall_cart
         <set>
             <if test="userId != null">
                 user_id = #{userId,jdbcType=INTEGER},
@@ -107,7 +107,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Cart">
-        UPDATE mmall_cart
+        UPDATE mmall_learning.mmall_cart
         SET user_id     = #{userId,jdbcType=INTEGER},
             product_id  = #{productId,jdbcType=INTEGER},
             quantity    = #{quantity,jdbcType=INTEGER},

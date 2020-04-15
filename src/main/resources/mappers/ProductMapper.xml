@@ -24,15 +24,15 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from mmall_product
+        from mmall_learning.mmall_product
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM mmall_product
+        DELETE FROM mmall_learning.mmall_product
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.Product">
-        INSERT INTO mmall_product (id, category_id, name,
+        INSERT INTO mmall_learning.mmall_product (id, category_id, name,
                                    subtitle, main_image, sub_images,
                                    detail, price, stock,
                                    status, create_time, update_time
@@ -46,7 +46,7 @@
         )
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.Product">
-        insert into mmall_product
+        insert into mmall_learning.mmall_product
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -125,7 +125,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Product">
-        update mmall_product
+        update mmall_learning.mmall_product
         <set>
             <if test="categoryId != null">
                 category_id = #{categoryId,jdbcType=INTEGER},
@@ -164,7 +164,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Product">
-        UPDATE mmall_product
+        UPDATE mmall_learning.mmall_product
         SET category_id = #{categoryId,jdbcType=INTEGER},
             name        = #{name,jdbcType=VARCHAR},
             subtitle    = #{subtitle,jdbcType=VARCHAR},

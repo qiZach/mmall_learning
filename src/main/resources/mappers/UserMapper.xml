@@ -23,15 +23,15 @@
             parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from mmall_user
+        from mmall_learning.mmall_user
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM mmall_user
+        DELETE FROM mmall_learning.mmall_user
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.User">
-        INSERT INTO mmall_user (id, username, password,
+        INSERT INTO mmall_learning.mmall_user (id, username, password,
                                 email, phone, question,
                                 answer, role, create_time,
                                 update_time)
@@ -43,7 +43,7 @@
                 now())
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.User">
-        insert into mmall_user
+        insert into mmall_learning.mmall_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -110,7 +110,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.User">
-        update mmall_user
+        update mmall_learning.mmall_user
         <set>
             <if test="username != null">
                 username = #{username,jdbcType=VARCHAR},
@@ -143,7 +143,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.User">
-        UPDATE mmall_user
+        UPDATE mmall_learning.mmall_user
         SET username    = #{username,jdbcType=VARCHAR},
             password    = #{password,jdbcType=VARCHAR},
             email       = #{email,jdbcType=VARCHAR},
@@ -159,13 +159,13 @@
 
     <select id="checkUsername" resultType="int" parameterType="string">
         SELECT count(1)
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE username = #{username}
     </select>
 
     <select id="checkEmail" resultType="int" parameterType="string">
         SELECT count(1)
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE email = #{email}
     </select>
 
@@ -173,7 +173,7 @@
     <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Base_Column_List"/>
-        from mmall_user
+        from mmall_learning.mmall_user
         where username = #{username}
         and password = #{password}
     </select>
@@ -181,27 +181,27 @@
 
     <select id="selectQuestionByUsername" resultType="string" parameterType="string">
         SELECT question
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE username = #{username}
     </select>
 
     <select id="checkAnswer" resultType="int" parameterType="map">
         SELECT count(1)
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE username = #{username}
               AND question = #{question}
               AND answer = #{answer}
     </select>
 
     <update id="updatePasswordByUsername" parameterType="map">
-        UPDATE mmall_user
+        UPDATE mmall_learning.mmall_user
         SET password = #{passwordNew}, update_time = now()
         WHERE username = #{username}
     </update>
 
     <select id="checkPassword" resultType="int" parameterType="map">
         SELECT count(1)
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE password = #{password}
               AND id = #{userId}
     </select>
@@ -209,7 +209,7 @@
 
     <select id="checkEmailByUserId" resultType="int" parameterType="map">
         SELECT count(1)
-        FROM mmall_user
+        FROM mmall_learning.mmall_user
         WHERE email = #{email}
               AND id != #{userId}
     </select>

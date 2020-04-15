@@ -26,15 +26,15 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from mmall_order
+        from mmall_learning.mmall_order
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM mmall_order
+        DELETE FROM mmall_learning.mmall_order
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.Order">
-        INSERT INTO mmall_order (id, order_no, user_id,
+        INSERT INTO mmall_learning.mmall_order (id, order_no, user_id,
                                  shipping_id, payment, payment_type,
                                  postage, status, payment_time,
                                  send_time, end_time, close_time,
@@ -49,7 +49,7 @@
                 now(), now())
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.Order">
-        insert into mmall_order
+        insert into mmall_learning.mmall_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -140,7 +140,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Order">
-        update mmall_order
+        update mmall_learning.mmall_order
         <set>
             <if test="orderNo != null">
                 order_no = #{orderNo,jdbcType=BIGINT},
@@ -185,7 +185,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Order">
-        UPDATE mmall_order
+        UPDATE mmall_learning.mmall_order
         SET order_no     = #{orderNo,jdbcType=BIGINT},
             user_id      = #{userId,jdbcType=INTEGER},
             shipping_id  = #{shippingId,jdbcType=INTEGER},

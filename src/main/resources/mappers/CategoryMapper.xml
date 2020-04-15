@@ -5,12 +5,16 @@
     <resultMap id="BaseResultMap" type="com.mmall.pojo.Category">
         <constructor>
             <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="parent_id" jdbcType="INTEGER"
+                 javaType="java.lang.Integer"/>
             <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="status" jdbcType="BIT" javaType="java.lang.Boolean"/>
-            <arg column="sort_order" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="sort_order" jdbcType="INTEGER"
+                 javaType="java.lang.Integer"/>
+            <arg column="create_time" jdbcType="TIMESTAMP"
+                 javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP"
+                 javaType="java.util.Date"/>
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
@@ -20,24 +24,26 @@
             parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from mmall_category
+        from mmall_learning.mmall_category
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        DELETE FROM mmall_category
+        DELETE
+        FROM mmall_learning.mmall_category
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.Category">
-        INSERT INTO mmall_category (id, parent_id, name,
-                                    status, sort_order, create_time,
-                                    update_time)
+        INSERT INTO mmall_learning.mmall_category (id, parent_id, name,
+                                                   status, sort_order,
+                                                   create_time,
+                                                   update_time)
         VALUES (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},
                 #{name,jdbcType=VARCHAR},
                 #{status,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, now(),
                 now())
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.Category">
-        insert into mmall_category
+        insert into mmall_learning.mmall_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -85,8 +91,9 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Category">
-        update mmall_category
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.mmall.pojo.Category">
+        update mmall_learning.mmall_category
         <set>
             <if test="parentId != null">
                 parent_id = #{parentId,jdbcType=INTEGER},
@@ -110,7 +117,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Category">
-        UPDATE mmall_category
+        UPDATE mmall_learning.mmall_category
         SET parent_id   = #{parentId,jdbcType=INTEGER},
             name        = #{name,jdbcType=VARCHAR},
             status      = #{status,jdbcType=BIT},
@@ -123,7 +130,7 @@
     <select id="selectCategoryChildrenByParentId" resultMap="BaseResultMap"
             parameterType="int">
         SELECT
-            <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>
         FROM mmall_learning.mmall_category
         WHERE parent_id = #{parentId}
     </select>
