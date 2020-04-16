@@ -39,10 +39,6 @@ public class RedisShardedPoolUtil {
 
     /**
      * 设置key的有效期挡位是秒
-     *
-     * @param key
-     * @param exTime
-     * @return
      */
     public static Long expire(String key, int exTime) {
         ShardedJedis jedis = null;
@@ -61,12 +57,6 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
-    /**
-     * @param key
-     * @param value
-     * @param exTime 秒
-     * @return
-     */
     public static String setEx(String key, String value, int exTime) {
         ShardedJedis jedis = null;
         String result = null;
@@ -117,4 +107,23 @@ public class RedisShardedPoolUtil {
         RedisShardedPool.returnResource(jedis);
         return result;
     }
+
+    public static Long setnx(String key, String value) {
+        ShardedJedis jedis = null;
+        Long result = null;
+
+        try {
+            // 获取一个连接
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.setnx(key, value);
+        } catch (Exception e) {
+            log.error("setex key:{} value:{} error", key, value, e);
+            RedisShardedPool.returnBrokenResource(jedis);
+            return result;
+        }
+
+        RedisShardedPool.returnResource(jedis);
+        return result;
+    }
+
 }
