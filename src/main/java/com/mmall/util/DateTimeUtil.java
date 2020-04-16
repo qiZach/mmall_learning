@@ -49,5 +49,4 @@ public class DateTimeUtil {
         System.out.println(DateTimeUtil.dateToStr(new Date()));
         System.out.println(DateTimeUtil.strToDate("2010-01-01 11:11:11"));
     }
-
 }

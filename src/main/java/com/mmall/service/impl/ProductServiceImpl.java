@@ -234,7 +234,8 @@ public class ProductServiceImpl implements IProductService {
             }
         }
         // 通过此句可以得到所有keyword的模糊查询, 和categoryId下的所有商品
-        List<Product> productList = productMapper.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword, categoryIdList.size() == 0 ? null : categoryIdList);
+        List<Product> productList = productMapper.selectByNameAndCategoryIds(StringUtils.isBlank(keyword) ? null : keyword,
+                categoryIdList.size() == 0 ? null : categoryIdList);
         List<ProductListVo> productListVoList = Lists.newArrayList();
         for (Product product : productList) {
             productListVoList.add(assembleProductListVo(product));

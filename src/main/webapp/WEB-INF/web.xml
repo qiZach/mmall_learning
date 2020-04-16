@@ -26,14 +26,14 @@
 
     <!-- 二期新增重置session时间的filter -->
     <!--<filter>-->
-        <!--<filter-name>sessionExpireFilter</filter-name>-->
-        <!--<filter-class>-->
-            <!--com.mmall.controller.common.SeesionExpireFilter-->
-        <!--</filter-class>-->
+    <!--<filter-name>sessionExpireFilter</filter-name>-->
+    <!--<filter-class>-->
+    <!--com.mmall.controller.common.SeesionExpireFilter-->
+    <!--</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>sessionExpireFilter</filter-name>-->
-        <!--<url-pattern>*.do</url-pattern>-->
+    <!--<filter-name>sessionExpireFilter</filter-name>-->
+    <!--<url-pattern>*.do</url-pattern>-->
     <!--</filter-mapping>-->
 
     <filter>
@@ -54,9 +54,12 @@
     </listener>
 
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+
+    <!--加载spring上下文,即spring入口-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -64,15 +67,20 @@
         </param-value>
     </context-param>
 
+    <!--配置文件默认为/WEB-INF/[servlet名字]-servlet.xml,即spring MVC入口-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>dispatcher</servlet-name>-->
+    <!--        <url-pattern>*.do</url-pattern>-->
+    <!--    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>

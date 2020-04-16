@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.schema.Server;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -590,4 +591,31 @@ public class OrderServiceImpl implements IOrderService {
         return ServerResponse.createByErrorMessage("订单已发货");
     }
 
+    @Override
+    public void closeOrder(int hour) {
+        // 关闭hours小时前创建但未支付的订单，例如hour=2
+        Date closeDateTime = DateUtils.addHours(new Date(), -hour);
+        // 查询两小时前创建但未支付的订单
+        List<Order> orderList = orderMapper.selectOrderStatusByCreateTime(Const.OrderStatusEnum.NO_PAY.getCode(),
+                DateTimeUtil.dateToStr(closeDateTime));
+        for (Order order : orderList) {
+            // 取出订单商品列表准备还原库存
+            List<OrderItem> orderItemList = orderItemMapper.getByOrderNo(order.getOrderNo());
+            for (OrderItem orderItem : orderItemList) {
+                // 一定要使用逐渐where条件，防止锁表。同时必须使用InnoDB
+                Integer stock = productMapper.selectStockByProductId(orderItem.getProductId());
+                // 考虑到订单中的商品已删除
+                if (stock == null) {
+                    continue;
+                }
+                // 更新库存
+                Product product = new Product();
+                product.setId(orderItem.getProductId());
+                product.setStock(stock + orderItem.getQuantity());
+                productMapper.updateByPrimaryKeySelective(product);
+            }
+            orderMapper.closeOrderByOrderId(order.getId());
+            log.info("关闭订单OrderNo:{}",order.getOrderNo());
+        }
+    }
 }
