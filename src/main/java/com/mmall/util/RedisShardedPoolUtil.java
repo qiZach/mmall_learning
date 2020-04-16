@@ -117,7 +117,25 @@ public class RedisShardedPoolUtil {
             jedis = RedisShardedPool.getJedis();
             result = jedis.setnx(key, value);
         } catch (Exception e) {
-            log.error("setex key:{} value:{} error", key, value, e);
+            log.error("setnx key:{} value:{} error", key, value, e);
+            RedisShardedPool.returnBrokenResource(jedis);
+            return result;
+        }
+
+        RedisShardedPool.returnResource(jedis);
+        return result;
+    }
+
+    public static String getset(String key, String value) {
+        ShardedJedis jedis = null;
+        String result = null;
+
+        try {
+            // 获取一个连接
+            jedis = RedisShardedPool.getJedis();
+            result = jedis.getSet(key, value);
+        } catch (Exception e) {
+            log.error("getset key:{} value:{} error", key, value, e);
             RedisShardedPool.returnBrokenResource(jedis);
             return result;
         }
